@@ -4,7 +4,7 @@ module.exports = {
   create(req, res) {
     // pegar Category
 
-    Category.all
+    Category.all()
       .then(function (results) {
         const categories = results.rows;
 
