@@ -1,5 +1,6 @@
 const Category = require("../models/Category");
 const Product = require("../models/Product");
+const { formatPrice } = require("../../lib/utils");
 
 module.exports = {
   create(req, res) {
