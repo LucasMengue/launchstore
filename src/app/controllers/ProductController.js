@@ -51,6 +51,7 @@ module.exports = {
     product.old_price = formatPrice(product.old_price);
     product.price = formatPrice(product.price);
 
+    // get categories
     results = await Category.all();
     const categories = results.rows;
 
