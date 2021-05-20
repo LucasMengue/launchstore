@@ -39,7 +39,7 @@ body {
   margin: 16px 0;
   padding: 12px 16px;
   width: 100%;
-  border: 4px;
+  border-radius: 4px;
 
   /* para colocar o botão para baixo */
   align-self: end;
