@@ -11,11 +11,19 @@ module.exports = {
     // dd
     const day = `0${date.getUTCDate()}`.slice(-2);
 
+    // hours
+    const hour = date.getHours();
+
+    // minutes
+    const minutes = date.getMinutes();
+
     // return yyyy/mm/dd
     return {
       day,
       month,
       year,
+      hour,
+      minutes,
       iso: `${year}-${month}-${day}`,
       birthDay: `${day}/${month}`,
       format: `${day}/${month}/${year}`,
