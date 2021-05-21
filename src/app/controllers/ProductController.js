@@ -1,7 +1,7 @@
 const Category = require("../models/Category");
 const Product = require("../models/Product");
 const File = require("../models/File");
-const { formatPrice } = require("../../lib/utils");
+const { formatPrice, date } = require("../../lib/utils");
 
 module.exports = {
   create(req, res) {
