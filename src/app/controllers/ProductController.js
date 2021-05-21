@@ -109,7 +109,7 @@ module.exports = {
 
     await Product.update(req.body);
 
-    return res.redirect(`/products/${req.body.id}/edit`);
+    return res.redirect(`/products/${req.body.id}`);
   },
   async delete(req, res) {
     await Product.delete(req.body.id);
