@@ -346,6 +346,7 @@ form .item #photos-preview img {
   object-fit: cover;
   opacity: 0.6;
   cursor: pointer;
+  transition: 200ms;
 }
 
 .product-sigle .gallery-preview img:hover,
