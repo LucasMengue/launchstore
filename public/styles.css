@@ -533,3 +533,17 @@ form .item #photos-preview img {
   color: #000;
   font-weight: bold;
 }
+
+/*== USER REGISTER ==*/
+
+.user-register.container.form {
+  max-width: 500px;
+}
+
+.form input[name="email"],
+.form input[name="password"],
+.form input[name="passwordRepeat"],
+.form input[name="cpf_cnpj"],
+.form input[name="cep"] {
+  max-width: 60%;
+}
