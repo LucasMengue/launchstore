@@ -4,10 +4,7 @@ const routes = express.Router();
 const SessionController = require("../app/controllers/SessionController");
 const UserController = require("../app/controllers/UserController");
 
-// login/logout
-routes.get("/login", SessionController.loginForm);
-routes.post("/login", SessionController.login);
-routes.post("/logout", SessionController.logout);
+const Validator = require("../app/validators/user");
 
 // reset password/ forgot
 routes.get("/forgot-password", SessionController.forgotForm);
