@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const { compare } = require("bcryptjs");
 
 async function post(req, res, next) {
   // check if has all fields
