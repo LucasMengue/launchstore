@@ -13,18 +13,45 @@ module.exports = {
     return res.redirect("/users");
   },
   async show(req, res) {
-    const { userId: id } = req.session;
+    try {
+      const { user } = req;
 
-    const user = await User.findOne({ where: { id } });
+      user.cpf_cnpj = formatCpfCnpj(user.cpf_cnpj);
+      user.cep = formatCep(user.cep);
 
-    if (!user)
-      return res.render("user/register", {
-        error: "Usuário não encontrado!",
+      return res.render("user/index", { user });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async update(req, res) {
+    // all fields
+    // has password
+    // password match
+    try {
+      const { user } = req;
+      let { name, email, cpf_cnpj, cep, address } = req.body;
+
+      cpf_cnpj = cpf_cnpj.replace(/\D/g, "");
+      cep = cep.replace(/\D/g, "");
+
+      await User.update(user.id, {
+        name,
+        email,
+        cpf_cnpj,
+        cep,
+        address,
       });
 
-    user.cpf_cnpj = formatCpfCnpj(user.cpf_cnpj);
-    user.cep = formatCep(user.cep);
-
-    return res.render("user/index", { user });
+      return res.render("user/index", {
+        user: req.body,
+        success: "Conta atualizada com sucesso!",
+      });
+    } catch (err) {
+      console.error(err);
+      return res.render("user/index", {
+        error: "Algum erro aconteceu!",
+      });
+    }
   },
 };
