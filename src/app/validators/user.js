@@ -40,4 +40,4 @@ async function post(req, res, next) {
   next();
 }
 
-module.exports = { post };
+module.exports = { post, show, update };
