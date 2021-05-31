@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const { formatCpfCnpj, formatCep } = require("../../lib/utils");
 
 module.exports = {
   registerForm(req, res) {
