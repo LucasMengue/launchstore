@@ -39,5 +39,34 @@ async function post(req, res, next) {
 
   next();
 }
+async function update(req, res, next) {
+  // check if has all fields
+  const fillAllFields = checkAllFields(req.body);
+  if (fillAllFields) {
+    return res.render("user/register", fillAllFields);
+  }
+
+  const { id, password } = req.body;
+
+  if (!password)
+    return res.render("user/index", {
+      user: req.body,
+      error: "Coloque sua senha para atualizar seu cadastro.",
+    });
+
+  const user = await User.findOne({ where: { id } });
+
+  const passed = await compare(password, user.password);
+
+  if (!passed)
+    return res.render("user/index", {
+      user: req.body,
+      error: "Senha incorreta.",
+    });
+
+  req.user = user;
+
+  next();
+}
 
 module.exports = { post, show, update };
