@@ -72,6 +72,12 @@ module.exports = {
       const newPassword = await hash(password, 8);
 
       // atualiza o usuário
+      await User.update(user.id, {
+        password: newPassword,
+        reset_token: "",
+        reset_token_expires: "",
+      });
+
       // avisar o usuário que ele tem uma nova senha
     } catch (err) {
       console.error(err);
