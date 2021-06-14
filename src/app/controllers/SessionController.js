@@ -69,6 +69,8 @@ module.exports = {
 
     try {
       // cria um no hash de senha
+      const newPassword = await hash(password, 8);
+
       // atualiza o usuário
       // avisar o usuário que ele tem uma nova senha
     } catch (err) {
