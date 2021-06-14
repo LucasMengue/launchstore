@@ -79,6 +79,10 @@ module.exports = {
       });
 
       // avisar o usuário que ele tem uma nova senha
+      return res.render("session/login", {
+        user: req.body,
+        success: "Senha atualizada! Faça o seu login",
+      });
     } catch (err) {
       console.error(err);
       return res.render("session/password-reset", {
