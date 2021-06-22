@@ -71,7 +71,9 @@ module.exports = {
   },
   async delete(id) {
     // pegar todos os produtos
-    let results = await Product.all();
+    let results = await db.query("SELECT * FROM products WHERE user_id = $1", [
+      id,
+    ]);
     const products = results.rows;
 
     // dos produtos, pegar todas as imagens
@@ -86,7 +88,13 @@ module.exports = {
 
     // remover as imagens da pasta public
     promiseResults.map((results) => {
-      results.rows.map((file) => fs.unlinkSync(file.path));
+      results.rows.map((file) => {
+        try {
+          fs.unlinkSync(file.path);
+        } catch (err) {
+          console.error(err);
+        }
+      });
     });
   },
 };
