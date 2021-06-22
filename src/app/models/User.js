@@ -1,5 +1,8 @@
 const db = require("../../config/db");
 const { hash } = require("bcryptjs");
+const fs = require("fs");
+
+const Product = require("../models/Product");
 
 module.exports = {
   async findOne(filters) {
