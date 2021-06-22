@@ -66,4 +66,24 @@ module.exports = {
     await db.query(query);
     return;
   },
+  async delete(id) {
+    // pegar todos os produtos
+    let results = await Product.all();
+    const products = results.rows;
+
+    // dos produtos, pegar todas as imagens
+    const allFilesPromise = products.map((product) =>
+      Product.files(product.id)
+    );
+
+    let promiseResults = await Promise.all(allFilesPromise);
+
+    // rodar a remoção do usuário
+    await db.query("DELETE FROM users WHERE id = $1", [id]);
+
+    // remover as imagens da pasta public
+    promiseResults.map((results) => {
+      results.rows.map((file) => fs.unlinkSync(file.path));
+    });
+  },
 };
